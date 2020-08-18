@@ -74,7 +74,9 @@ Here are the results from the author's computer:
     $ graalnode --version
     v12.15.0
 
-graalnode is an alias for the GraalVM implementation of node.
+## Notes
+graalnode is an alias for the GraalVM implementation of node  
+GraalVM version: graalvm-ce-java11-20.1.0
 
 Detailed results:
 
