@@ -1,8 +1,8 @@
 const {request} = require('./lib/http_promise');
  
 const main = async () => {
-        for (let i=0;i<100;i++){
-                await request("https://jsonplaceholder.typicode.com/todos/1", "get",{})
+        for (let i=0;i<10000;i++){
+                await request("http://localhost:3000", "get",{})
         }
 }
 
