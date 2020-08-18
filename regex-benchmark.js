@@ -1,5 +1,7 @@
 //based on: https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/regexredux-node-3.html but single threaded
 
+const n = process.argv[2] || 1000;
+
 const data= `
 >ONE Homo sapiens alu
 GGCCGGGCGCGGTGGCTCACGCCTGTAATCCCAGCACTTTGGGAGGCCGAGGCGGGCGGA
@@ -185,7 +187,7 @@ const regExps = [
         /agggtaa[cgt]|[acg]ttaccct/ig
 ];
 
-for(let i=0;i<1000;i++){
+for(let i=0;i<n;i++){
 	for (let j = 0; j < regExps.length; j++) {
         	const re = regExps[j];
         	const m = data.match(re);
