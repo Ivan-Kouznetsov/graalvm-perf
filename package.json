@@ -1,0 +1,14 @@
+{
+  "name": "graalvm-perf",
+  "version": "0.0.1",
+  "description": "GraalVM vs Nodejs performance comparison",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo no tests"
+  },
+  "author": "Ivan Kouznetsov",
+  "license": "MIT",
+  "dependencies": {
+    "jsonpath": "^1.0.2"
+  }
+}
