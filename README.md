@@ -5,7 +5,7 @@ This is a set of minimal programs which, at the time of writing, perform faster 
 
 |Benchmark| What it does  |
 |--|--|
-| http-benchmark.js |  executes a GET request 100 times  |
+| http-benchmark.js |  executes a GET request 10000 times  |
 | jsonpath-classic-benchmark.js | executes a set of 3 jsonpath queries 1000 times using Stefan Goessner's 2007 library|
 | jsonpath-new-benchmark.js | executes a set of 3 jsonpath queries 1000 times using the popular jsonpath npm module| 
 |regex-benchmark.js | executes the regex-redux problem 1000 times|
@@ -14,15 +14,15 @@ Here are the results from the author's computer:
 
     $ ~/repos/graalvm-perf$ time node http-benchmark.js >> /dev/null
     
-    real    0m6.833s
-    user    0m0.250s
-    sys     0m0.063s
+    real    0m2.943s
+    user    0m1.656s
+    sys     0m0.281s
     
     $ ~/repos/graalvm-perf$ time graalnode http-benchmark.js >> /dev/null
     
-    real    0m7.236s
-    user    0m1.094s
-    sys     0m0.234s
+    real    0m19.619s
+    user    0m40.594s
+    sys     0m3.609s
 
     $ ~/repos/graalvm-perf$ time node jsonpath-classic-benchmark.js >> /dev/null
     
