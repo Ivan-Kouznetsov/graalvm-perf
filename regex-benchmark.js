@@ -1,6 +1,7 @@
 //based on: https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/regexredux-node-3.html but single threaded
 
-const n = process.argv[2] || 1000;
+const internationsPerTest = process.argv[2] || 10000;
+const testCount = process.argv[3] || 10;
 
 const data= `
 >ONE Homo sapiens alu
@@ -176,21 +177,35 @@ ccaacattacccggtatgacaaaatgacgccacgtgtcgaataatggtctgaccaatgta
 ggaagtgaaaagataaatat`;
 
 const regExps = [
-        /agggtaaa|tttaccct/ig,
-        /[cgt]gggtaaa|tttaccc[acg]/ig,
-        /a[act]ggtaaa|tttacc[agt]t/ig,
-        /ag[act]gtaaa|tttac[agt]ct/ig,
-        /agg[act]taaa|ttta[agt]cct/ig,
-        /aggg[acg]aaa|ttt[cgt]ccct/ig,
-        /agggt[cgt]aa|tt[acg]accct/ig,
-        /agggta[cgt]a|t[acg]taccct/ig,
-        /agggtaa[cgt]|[acg]ttaccct/ig
+    /agggtaaa|tttaccct/ig,
+    /[cgt]gggtaaa|tttaccc[acg]/ig,
+    /a[act]ggtaaa|tttacc[agt]t/ig,
+    /ag[act]gtaaa|tttac[agt]ct/ig,
+    /agg[act]taaa|ttta[agt]cct/ig,
+    /aggg[acg]aaa|ttt[cgt]ccct/ig,
+    /agggt[cgt]aa|tt[acg]accct/ig,
+    /agggta[cgt]a|t[acg]taccct/ig,
+    /agggtaa[cgt]|[acg]ttaccct/ig
 ];
 
-for(let i=0;i<n;i++){
-	for (let j = 0; j < regExps.length; j++) {
-        	const re = regExps[j];
-        	const m = data.match(re);
-        	console.log(re.source, m ? m.length : 0);
-	}
+const test = (iterations) =>{
+    let len = 0;
+    for(let i=0;i<iterations;i++){
+        for (let j = 0; j < regExps.length; j++) {
+            const re = regExps[j];
+            const m = data.match(re);
+            len += m ? m.length : 0;
+        }
+    }
+
+    return len;
+}
+
+console.info(`Internations per test: ${internationsPerTest}`);
+console.info(`Number of tests: ${testCount}`);
+
+for(let i=0;i<testCount;i++){
+    const start = Date.now();
+    console.log("Output length: " + test(internationsPerTest));
+    console.log(i+" = "+(Date.now()-start)+" ms");
 }
